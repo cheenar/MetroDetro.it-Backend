@@ -52,7 +52,7 @@ app.get('/p/get_profile_id', function(req, res){
 			}
 			else
 			{
-				res.send(rows[0]);
+				res.json(rows[0]);
 			}
 		});
 	}
