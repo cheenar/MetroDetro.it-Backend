@@ -65,10 +65,10 @@ app.get('/p/get_fares', function(req, res) {
 		connection.query("SELECT * FROM  `Fares` WHERE  `PROFILE_ID` =  '" + profile_id + "'", function(err, rows, fields){
 			if(err)
 			{
-
+				res.json({"error":"no fares"});
 			}
 			else {
-				res.send(rows);
+				res.json(rows);
 			}
 		});
 	}
