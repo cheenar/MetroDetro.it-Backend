@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 	database: "sql9139285"
 });
 
-var server = app.listen(6606, function() {
+var server = app.listen(80, function() {
 	connection.connect();
 
 	var host = server.address().address;
@@ -53,6 +53,22 @@ app.get('/p/get_profile_id', function(req, res){
 			else
 			{
 				res.json(rows[0]);
+			}
+		});
+	}
+});
+
+app.get('/p/get_fares', function(req, res) {
+	var json  = req.query;
+	if(json.hasOwnProperty('profile_id')) {
+		var profile_id = json.profile_id;
+		connection.query("SELECT * FROM  `Fares` WHERE  `PROFILE_ID` =  '" + profile_id + "'", function(err, rows, fields){
+			if(err)
+			{
+
+			}
+			else {
+				res.send(rows);
 			}
 		});
 	}
